@@ -64,7 +64,7 @@ fi
 rustup target add "$RUSTTARGET" >&2
 
 
-BINARIES="$(cargo read-manifest | jq -r ".targets[] | select(.kind[] | contains(\"bin\")) | .name")"
+BINARIES="$(cargo metadata | jq -r ".targets[] | select(.kind[] | contains(\"bin\")) | .name")"
 
 OUTPUT_LIST=""
 for BINARY in $BINARIES; do
